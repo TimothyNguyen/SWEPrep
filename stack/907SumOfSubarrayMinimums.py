@@ -7,7 +7,8 @@ class Solution(object):
         A = [0]+A
         result = [0]*len(A)
         stack = [0]
-        for i in range(len(A)):
+        for i in range(1, len(A)):
+            #print(i)
             while A[stack[-1]] > A[i]:
                 stack.pop() 
             j = stack[-1]
