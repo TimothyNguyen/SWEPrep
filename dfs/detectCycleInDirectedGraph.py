@@ -18,7 +18,7 @@ def has_cycle(graph):
     for vertex in graph.edges:
         if has_cycle_helper(vertex, graph, vertex_states):
             return True
-        return False
+    return False
 
 
 def has_cycle_helper(vertex, graph, vertex_states):

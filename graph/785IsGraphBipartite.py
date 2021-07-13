@@ -17,4 +17,4 @@ class Solution(object):
                             color[nei] = 1 if color[node] == 0 else 0
                         elif color[nei] == color[node]: 
                             return False
-        return Tru
+        return True
