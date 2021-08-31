@@ -16,9 +16,19 @@ def get_data(url=None):
 
 
 def get_sessions(ans, visitor_dict):
+    sessions = dict()
     for user_id in visitor_dict:
-        for i in range(1, len(user_id)):
-            print(user_id[i-1])
+        sessions[user_id] = []
+        len_list = len(visitor_dict[user_id])
+        
+        for idx, val in enumerate(visitor_dict[user_id]):
+            if len_list == idx - 1: break
+            
+        #pages = list(visitor_dict[user_id])
+        #for i in range(1, len(pages)):
+        #    print(pages[i-1])
+        # print(visitor_dict[user_id])
+    ans["sessionsByUser"] = sessions
 
 # minutes = (milliseconds/1000)/60
 if __name__ == '__main__':
@@ -33,8 +43,8 @@ if __name__ == '__main__':
         visitor_dict[event['visitorId']][timestamp] = event['url']
     for user_id in visitor_dict:
         visitor_dict[user_id] = dict(sorted(visitor_dict[user_id].items(), key=lambda item: item[0]))
-    
-    ans = {}
+    ans = dict()
     get_sessions(ans, visitor_dict)
+    #print(ans)
     #print(visitor_dict)
 
