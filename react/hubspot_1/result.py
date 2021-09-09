@@ -10,8 +10,8 @@ from collections import defaultdict
 
 def get_data(url=None):
     # Get the data
-    #data = requests.get(url)
-    #data = data.json()
+    # data = requests.get(url)
+    # data = data.json()
     f = open('dataset.json')
     return json.load(f)
 

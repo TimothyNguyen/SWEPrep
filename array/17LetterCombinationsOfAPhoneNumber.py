@@ -1,5 +1,5 @@
 class Solution:
-    def letterCombinations(self, digits: str) -> List[str]:
+    def letterCombinations(self, digits: str):
         interpret_digit = {
             '1': '',
             '2': 'abc',
@@ -21,4 +21,6 @@ class Solution:
                     current_combinations.append(combination + letter)
             all_combinations = current_combinations
         return all_combinations
-        
+s = '23'
+ans = Solution().letterCombinations(s)
+print(ans)

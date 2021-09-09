@@ -6,7 +6,10 @@ class Solution(object):
         """
         ans = strs[0]
         for i in range(1, len(strs)):
-            while strs[i][0:len(ans)] != ans:
-                ans = ans[0:len(ans)-1]
+            while strs[i][:len(ans)] != ans:
+                ans = ans[:len(ans)-1]
                 if len(ans) == 0: return ""
         return ans
+
+# Test cases
+# strs = ["flower", "flow", "flight"] -> "fl"
