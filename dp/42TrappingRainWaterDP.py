@@ -19,3 +19,21 @@ class Solution:
             ans += max(0, dp[i] - height[i]) 
         
         return ans
+
+
+'''
+left, right = 0, len(height) - 1
+left_max, right_max = 0, 0
+water = 0
+while left < right:
+    if height[left] < height[right]:
+        left_max = max(left_max, height[left])
+        water += max(0, left_max - height[left])
+        left += 1
+    else:
+        right_max = max(right_max, height[right])
+        water += max(0, right_max - height[right])
+        right -= 1
+    # print(height)
+return water
+'''
