@@ -4,6 +4,7 @@ class Node(object):
         self.val = val
         self.neighbors = neighbors if neighbors is not None else []
 
+
 class Solution(object):
     def cloneGraph(self, start):
         """
@@ -11,16 +12,16 @@ class Solution(object):
         :rtype: Node
         """
         if not start: return start
-        
-        queue = deque([start])
+
+        queue = [start]
         visited = dict()
         visited[start] = Node(start.val)
         while queue:
-            node = queue.popleft()
+            node = queue.pop(0)
             clone = visited[node]
-            for neighbor in node.neighbors:
-                if neighbor not in visited:
-                    visited[neighbor] = Node(neighbor.val)
-                    queue.append(neighbor)
-                clone.neighbors.append(visited[neighbor])
+            for nei in node.neighbors:
+                if nei not in visited:
+                    visited[nei] = Node(nei.val)
+                    queue.append(nei)
+                clone.neighbors.append(visited[nei])
         return visited[start]
