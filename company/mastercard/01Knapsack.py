@@ -38,6 +38,18 @@ def solve_knapsack(profits, weights, capacity):
     # maximum profit will be at the bottom-right corner.
     return dp[n - 1][capacity]
 
+def knapsack(weights, values, capacity):
+    dp = [0 for i in range(capacity + 1)]
+    for i in range(1, len(weights)):
+        for w in range(capacity, 0, -1):
+            # WTF 
+            if weights[i - 1] <= w:
+                dp[w] = max(dp[w], dp[w-weights[i-1]] + values[i-1])
+    return dp[len(weights)]
+
+# [0, 1, 2, 3, 4, 5]
+# [0, 0, 0, 0, 0, ]
+
 def main():
   print(solve_knapsack([1, 6, 10, 16], [1, 2, 3, 5], 5))
   print(solve_knapsack([1, 6, 10, 16], [1, 2, 3, 5], 6))
