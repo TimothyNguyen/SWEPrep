@@ -1,3 +1,15 @@
+'''
+Given an input string s and a pattern p, implement regular 
+expression matching with support for '.' and '*' where:
+
+'.' Matches any single character.​​​​
+'*' Matches zero or more of the preceding element.
+The matching should cover the entire input string (not partial).
+
+Input: s = "aa", p = "a"
+Output: false
+Explanation: "a" does not match the entire string "aa".
+'''
 class Solution(object):
     def isMatch(self, s: str, p: str) -> bool:
         s, p = ' '+ s, ' '+ p
@@ -6,7 +18,7 @@ class Solution(object):
         dp[0][0] = 1
 
         for j in range(1, lenP):
-            if p[j] == '*':
+            if dp[j] == '*':
                 dp[0][j] = dp[0][j-2]
 
         for i in range(1, lenS):

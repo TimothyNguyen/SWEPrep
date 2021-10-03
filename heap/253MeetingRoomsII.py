@@ -1,3 +1,20 @@
+'''
+Given an array of meeting time intervals intervals where 
+intervals[i] = [starti, endi], return the minimum number 
+of conference rooms required.
+
+Example 1:
+
+Input: intervals = [[0,30],[5,10],[15,20]]
+
+# After sort
+[[0,30],[5,10],[15,20]]
+
+# [30] 
+# [10, 30]
+# [20, 30]
+Output: 2
+'''
 class Solution:
     def minMeetingRooms(self, intervals: List[List[int]]) -> int:
         if not intervals or len(intervals) == 0: return 0
