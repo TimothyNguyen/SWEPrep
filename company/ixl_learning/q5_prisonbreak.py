@@ -32,25 +32,90 @@ Sort both the lists in ascending order.
 Traverse the list l1 and l2 and store the maximum distance between two neighbours as maxH and maxV respectively.
 Print the product of maxH and maxV as the largest area.
 '''
-class Solution:
-    def maxArea(self, h: int, w: int, horizontalCuts: List[int], verticalCuts: List[int]) -> int:
-        # Start by sorting the inputs
-        horizontalCuts.sort()
-        verticalCuts.sort()
-        
-        # Consider the edges first
-        max_height = max(horizontalCuts[0], h - horizontalCuts[-1])
-        for i in range(1, len(horizontalCuts)):
-            # horizontalCuts[i] - horizontalCuts[i - 1] represents the distance between
-            # two adjacent edges, and thus a possible height
-            max_height = max(max_height, horizontalCuts[i] - horizontalCuts[i - 1])
-        
-        # Consider the edges first
-        max_width = max(verticalCuts[0], w - verticalCuts[-1])
-        for i in range(1, len(verticalCuts)):
-            # verticalCuts[i] - verticalCuts[i - 1] represents the distance between
-            # two adjacent edges, and thus a possible width
-            max_width = max(max_width, verticalCuts[i] - verticalCuts[i - 1])
-        
-        # Python doesn't need to worry about overflow - don't forget the modulo though!
-        return (max_height * max_width) % (10**9 + 7)
+# Python 3 program for the above approach
+ 
+# Function to find the largest area
+# when a series of horizontal &
+# vertical bars are removed
+def largestArea(N, M, H,
+                 V, h, v):
+ 
+  # Stores all bars
+  s1 = set([])
+  s2 = set([])
+ 
+  # Insert horizontal bars
+  for i in range(1, N + 2):
+    s1.add(i)
+ 
+  # Insert vertictal bars
+  for i in range(1, M + 2):
+    s2.add(i)
+ 
+  # Remove horizontal separators from s1
+  for i in range(h):
+    s1.remove(H[i])
+ 
+  # Remove vertical separators from s2
+  for i in range( v ):
+ 
+    s2.remove(V[i])
+ 
+  # Stores left out horizontal and
+  # vertical separators
+  list1 = [0] * len(s1)
+  list2 = [0]*len(s2)
+ 
+  i = 0
+  for it1 in s1:
+    list1[i] = it1
+    i += 1
+ 
+  i = 0
+  for it2 in s2:
+    list2[i] = it2
+    i += 1
+ 
+  # Sort both list in
+  # ascending order
+  list1.sort()
+  list2.sort()
+ 
+  maxH = 0
+  p1 = 0
+  maxV = 0
+  p2 = 0
+ 
+  # Find maximum difference of neighbors of list1
+  for j in range(len(s1)):
+    maxH = max(maxH, list1[j] - p1)
+    p1 = list1[j]
+ 
+  # Find max difference of neighbors of list2
+  for j in range(len(s2)):
+    maxV = max(maxV, list2[j] - p2)
+    p2 = list2[j]
+ 
+  # Print largest volume
+  print((maxV * maxH))
+ 
+# Driver code
+if __name__ == "__main__":
+ 
+  # Given value of N & M
+  N = 3
+  M = 3
+ 
+  # Given arrays
+  H = [2]
+  V = [2]
+ 
+  h = len(H)
+  v = len(V)
+ 
+  # Function call to find the largest
+  # area when a series of horizontal &
+  # vertical bars are removed
+  largestArea(N, M, H, V, h, v)
+ 
+  # This code is contributed by ukasp.

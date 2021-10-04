@@ -45,15 +45,18 @@ def getMinimumDifference(a: str, b: str):
 
         word_difference = 0
 
-        word_1_freq = dict(collections.Counter(a[array_index]))
-        word_2_freq = dict(collections.Counter(b[array_index]))
+        count_dict = [0] * 26
         
-        for letter, value in word_1_freq.items():
-            if letter in word_2_freq:
-                word_difference += abs(word_1_freq[letter] - word_2_freq[letter])
+        for i in range(len(word)):
+            count_dict[ord(word[i]) - ord('a')] += 1
 
-            else:
-                word_difference += value
+        word2 = b[array_index]
+        for i in range(len(word2)):
+            count_dict[ord(word2[i]) - ord('a')] -= 1
+        
+        for i in range(26):
+            if count_dict[i] > 0:
+               word_difference += count_dict[i] 
 
         differences_array.append(word_difference)
 
