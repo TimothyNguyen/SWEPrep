@@ -15,3 +15,4 @@ class Solution:
             else:
                 l += 1
         return -1
+        s

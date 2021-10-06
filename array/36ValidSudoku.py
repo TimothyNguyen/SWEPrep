@@ -1,3 +1,6 @@
+# Time complexity: O(N^2)
+# Space complexity: O(N^2)
+
 class Solution:
     def isValidSudoku(self, board: List[List[str]]) -> bool:
         N = 9
