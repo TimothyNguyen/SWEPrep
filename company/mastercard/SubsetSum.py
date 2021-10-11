@@ -16,7 +16,6 @@ The given set does not have any subset whose sum is equal to '6'.
 
 Time: O(N*S)
 '''
-'''
 def can_partition(nums, sum):
     #TODO: Write - Your - Code
     dp = [[False for _ in range(sum + 1)] for _ in range(len(nums))]
@@ -40,7 +39,6 @@ def can_partition(nums, sum):
     # the bottom-right corner will have our answer.
     return dp[len(nums) - 1][sum]
 '''
-
 def can_partition(num, sum):
     n = len(num)
     dp = [False for x in range(sum+1)]
@@ -62,7 +60,7 @@ def can_partition(num, sum):
                 dp[s] = dp[s - num[i]]
 
     return dp[sum]
-
+'''
 
 def main():
   print("Can partition: " + str(can_partition([1, 2, 3, 7], 6)))

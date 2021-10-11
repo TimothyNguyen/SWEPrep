@@ -1,6 +1,6 @@
 class Solution:
     def eraseOverlapIntervals(self, intervals: List[List[int]]) -> int:
-        # [[1, 2], [2, 3], [1, 3], [3, 4]]
+        # [[1, 2], [1, 3], [2, 3], [3, 4]]
         # [1, 2, 1, 0]
         '''
         Case 1: Non-overlapping
