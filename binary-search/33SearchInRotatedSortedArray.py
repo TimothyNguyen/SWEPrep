@@ -15,4 +15,5 @@ class Solution:
             else:
                 l += 1
         return -1
-        s
+
+# Ex. [5 6 7 0 1 2 3 4] target

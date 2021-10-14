@@ -9,3 +9,17 @@ def rightSideView(root):
     ans = []
     dfs(root, ans, 1)
     return ans
+
+def leftSideView(root):
+
+    def dfs(root, res, level):
+        if not root: 
+            return
+        if level > len(res):
+            res.append(root.val)
+        dfs(root.left, res, level + 1)
+        dfs(root.right, res, level + 1)
+
+    ans = []
+    dfs(root, ans, 1)
+    return ans
