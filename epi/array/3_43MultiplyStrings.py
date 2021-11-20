@@ -11,7 +11,7 @@ class Solution:
             res2 = res2 * 10 + (ord(d) - ord('0'))
         
         # Get product result
-        res = res1 + res2
+        res = res1 * res2
 
         # convert back to string
         ans = ''
