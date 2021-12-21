@@ -18,7 +18,7 @@ class Solution(object):
         dp[0][0] = 1
 
         for j in range(1, lenP):
-            if dp[j] == '*':
+            if p[j] == '*':
                 dp[0][j] = dp[0][j-2]
 
         for i in range(1, lenS):
