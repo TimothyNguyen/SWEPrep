@@ -13,6 +13,16 @@ For example, 1 → 2 → 3 → 1 is a cycle of length 3, but
 1 → 2 → 3 → 4 and 1 → 2 → 3 → 2 → 1 are not.
 Two cycles are considered to be different if one or more of the 
 rooms visited in the first cycle is not in the second cycle.
+
+Example: 
+5
+[[1,2],[5,2],[4,1],[2,4],[3,1],[3,4]]
+
+Output of graph & set:
+defaultdict(<class 'list'>, {1: [2, 4, 3], 2: [5, 4], 3: [4]})
+{(2, 1), (4, 3), (3, 1), (4, 2), (4, 1), (5, 2)}
+
+Time Complexity:  O(V*E^2)
 '''
 from collections import defaultdict
 
