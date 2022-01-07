@@ -1,3 +1,4 @@
+'''
 import java.util.ArrayList;
 
 class Solution {
@@ -18,9 +19,8 @@ class Solution {
         return ans.toString();
     }
 }
+'''
 
-
-/*
 class Solution:
     def convert(self, s: str, numRows: int) -> str:
         if numRows <= 1: return s
@@ -35,4 +35,3 @@ class Solution:
             else: rowIndex -= 1
         
         return ''.join(rows)
-*/
