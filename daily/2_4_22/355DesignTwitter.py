@@ -49,8 +49,6 @@ class Twitter:
     def __init__(self):
         self.followers_map = defaultdict(list)
         self.user_tweets = defaultdict(list)
-        
-        
 
     def postTweet(self, userId: int, tweetId: int) -> None:
         newTweet = Tweet(tweetId, time.time())
