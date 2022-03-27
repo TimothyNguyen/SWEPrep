@@ -5,7 +5,6 @@ class Solution:
         for i in range(len(updates)):
             incs[updates[i][0]] += updates[i][2]
             incs[updates[i][1] + 1] -= updates[i][2]
-            print(incs)
         inc = 0
         for i in range(len(ans)):
             inc += incs[i]

@@ -22,5 +22,4 @@ public class FillTheTruck {
 		}
 		return list;
 	}
-	
 }
