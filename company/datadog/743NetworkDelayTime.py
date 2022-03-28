@@ -13,14 +13,18 @@ receive the signal, return -1.
 
 times = [[2,1,1],[2,3,1],[3,4,1]], n = 4, k = 2
 
-Time: O(N*E)
-Space: O(N*E)
+Djikstra
+Time: O(N + ElogN)
+Space: O(N + E log N)
+
+Dijkstra's Algorithm takes O(ElogN). 
+Finding the minimum time required in signalReceivedAt 
+takes O(N).
 '''
 import collections
 import heapq
 from this import d
 class Solution:
-    '''
     def networkDelayTime(self, times: List[List[int]], n: int, k: int) -> int:
         # build graph
         graph = collections.defaultdict(list)
@@ -39,9 +43,10 @@ class Solution:
         if len(timeMap)== n:
             return max(timeMap.values())
         return -1 
-    '''
+    
 
     def networkDelayTime(self, times: List[List[int]], n: int, k: int) -> int:
+        '''
         graph = collections.defaultdict(dict)
         for i, j, w in times:
             graph[i][j] = w
@@ -60,3 +65,4 @@ class Solution:
                         heapq.heappush(heap, (dist[child], child))
         ret =  max(dist[1:])
         return ret if ret!=float("inf") else -1
+        '''

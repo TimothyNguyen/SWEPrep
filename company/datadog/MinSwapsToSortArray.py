@@ -26,7 +26,7 @@ located in a box, to sort them, it takes lots of steps. However, if we know
 that the big box is divided into several small rooms and the balls belong to 
 each room (after sorting) are indeed in their rooms, then sorting is much easier.
 '''
-def minSwaps(arr):
+def minSwap(arr):
     n = len(arr)
 
     # Create two arrays and use
@@ -45,7 +45,7 @@ def minSwaps(arr):
     # Initialize all elements as not
     # visited or false.
     vis = {k: False for k in range(n)}
-
+    print(arrpos)
     # Initialize result
     ans = 0
     for i in range(n):
@@ -73,7 +73,8 @@ def minSwaps(arr):
         # current cycle
         if cycle_size > 0:
             ans += (cycle_size - 1)
-            # return answer
+    print(arr)
+    print(ans)
     return ans
 
 def test(actual, expected):
@@ -89,7 +90,6 @@ def minSwaps(nums):
     keyToIndex = dict([(nums[i], i) for i in range(len(nums))])
     heap = nums[::]
     heapq.heapify(heap)
-
     swaps = 0
     for i in range(len(nums)):
         smallest = heapq.heappop(heap)

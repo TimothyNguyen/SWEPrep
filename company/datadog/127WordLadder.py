@@ -1,3 +1,12 @@
+import collections
+
+'''
+Time Complexity: O(M^2 x N) where M is the length of each word and N is the total 
+number of words in the input word list.
+
+Space: O(M^2 x N)
+'''
+
 class Solution(object):
     def ladderLength(self, beginWord, endWord, wordList):
         """
@@ -7,8 +16,9 @@ class Solution(object):
         :rtype: int
         """
         word_set = set(wordList)
-        if not wordList or endWord not in word_set: return 0
-        queue = deque()
+        if not wordList or endWord not in word_set: 
+            return 0
+        queue = collections.deque()
         queue.append(beginWord)
         res = 1
         while endWord not in queue:
@@ -21,7 +31,6 @@ class Solution(object):
                     for ch in range(ord('a'), ord('z') + 1):
                         word[j] = chr(ch)
                         charWord = ''.join(word)
-                        # print(charWord)
                         if charWord in word_set:
                             word_set.remove(charWord)
                             queue.append(charWord)

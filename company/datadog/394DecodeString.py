@@ -14,6 +14,19 @@ numbers, k. For example, there will not be input like 3a or 2[4].
 
 Time Complexity: O(n)
 Space: O(n)
+
+
+Example 1:
+Input: s = "3[a]2[bc]"
+Output: "aaabcbc"
+
+Example 2:
+Input: s = "3[a2[c]]"
+Output: "accaccacc"
+
+Example 3:
+Input: s = "2[abc]3[cd]ef"
+Output: "abcabccdcdcdef"
 '''
 class Solution(object):
     def decodeString(self, s):

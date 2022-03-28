@@ -11,6 +11,16 @@ using the division operation.
 '''
 
 class Solution:
+    '''
+    nums = [1,2,3,4]
+    l = [1, 0, 0, 0]
+    l = [1, 1, 0, 0]
+    l = [1, 1, 2, 0]
+    l = [1, 1, 2, 6]
+    r = [0, 0, 0, 1]
+    r = [24, 6, 4, 1]
+    arr = [24, 12, 8, 6]
+    '''
     def productExceptSelf(self, nums: List[int]) -> List[int]:
         
         # The length of the input array 

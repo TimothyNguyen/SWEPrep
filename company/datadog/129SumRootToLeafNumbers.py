@@ -7,12 +7,12 @@ The root-to-leaf path 1->3 represents the number 13.
 Therefore, sum = 12 + 13 = 25.
 '''
 class Solution(object):
-    answer = 0
     def sumNumbers(self, root):
         """
         :type root: TreeNode
         :rtype: int
         """
+        self.answer = 0
         def preorder(root, value):
             if root is None: return
             if root.left is None and root.right is None: 
