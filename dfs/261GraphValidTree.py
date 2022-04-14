@@ -13,6 +13,9 @@ Output: true
 Input: n = 5, edges = [[0,1],[1,2],[2,3],[1,3],[1,4]]
 Output: false
 
+As said above, creating an adjacency list has a time complexity of
+O(N + E). Because E is now bounded by N, we can reduce this 
+slightly to O(N + N) = O(N).
 Time/Space: O(N)
 '''
 class Solution:

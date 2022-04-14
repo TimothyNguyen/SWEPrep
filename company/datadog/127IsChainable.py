@@ -21,4 +21,5 @@ class Solution(object):
             for elem in set_numbers:
                 if num[-2:] == str(elem)[:2]:
                     queue.append(str(elem))
+                    set_numbers.remove(elem)
         return False

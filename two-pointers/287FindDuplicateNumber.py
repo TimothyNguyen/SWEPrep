@@ -14,3 +14,14 @@ class Solution(object):
             hare = nums[hare]
 
         return hare
+
+'''
+fast: 1, 2, 2
+slow: 1, 3, 2, 4, 2
+
+1 3 2 4 5
+fast: 1, 4, 
+slow: 1, 3, 4, 5
+
+slow = tortoise
+'''

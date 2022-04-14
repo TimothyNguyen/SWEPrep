@@ -22,6 +22,34 @@ intersects with interval on left or right.
 import heapq
 class Solution:
     def meetingRooms(self, calendar, rooms, queries):
+
+        def get_rooms(calendar):
+            maxTime = max(interval[1] for interval in calendar)
+            start, end = [0] * maxTime, [0] * maxTime
+            for i in range(len(start)):
+                start[i] = calendar[i][0]
+                end[i] = calendar[i][1]
+            start.sort()
+            end.sort()
+            res, endIdx = 0, 0
+            for i in range(len(start)):
+                if start[i] < end[endIdx]:
+                    res += 1
+                else:
+                    endIdx += 1
+            return res
+        
+        res = [False] * len(queries)
+        lst = []
+        for elem in calendar:
+            lst.append(elem)
+        for i in range(len(res)):
+            lst.append(queries[i])
+            if get_rooms(lst) <= rooms:
+                res[i] = True
+            lst.remove(len(list) - 1)
+        return res
+        '''
         maxTime = max([interval[1] for interval in calendar])
         meetings = [0] * (maxTime+1)
         ##1. record the events, start -> add one room; end -> remove one room
@@ -56,4 +84,13 @@ class Solution:
                 res.append(False)
             else:
                 res.append(True)
-        return res
+        return res 
+        '''
+
+'''
+Input: calendar = [[1, 2], [4, 5], [8, 10]], rooms = 1, queries = [[2, 3], [3, 4]], queries = [[4, 5], [5, 6]]
+[0, 1, -1, 0, 1, -1, 0, 0, 1, 0, -1]
+[0, 1, 0, 0, 1, 0, 0, 0, 1, 1, 0]
+[0, 1, 0, 0, 1, 0, 0, 0, 1, 2, 0]
+
+'''
