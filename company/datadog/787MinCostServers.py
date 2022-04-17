@@ -14,7 +14,7 @@ def min_time(server_graph: List[List[int]], start, end):
             num_elements += 1
         server_graph[start].append((end, cost))
     dist = [float('inf')] * num_elements
-    dist[start] = (0)
+    dist[start] = 0
     heap = [(0, start)]
     parent = dict()
     while heap:
@@ -24,7 +24,7 @@ def min_time(server_graph: List[List[int]], start, end):
         for nei, c in graph[node]:
             if cost + c < dist[unique_nodes[node]]:
                 parent[nei] = node
-                dist[unique_nodes[node]] = (c)
+                dist[unique_nodes[node]] = c
                 heapq.heappush(heap, (cost + c, nei))
     
     ans = []

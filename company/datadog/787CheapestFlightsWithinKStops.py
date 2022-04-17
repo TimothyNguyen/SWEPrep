@@ -26,29 +26,42 @@ and show its path.
 import heapq
 import collections
 
-# class Solution:
-#     # Dijkstra O(N^k*log(N^k)) but much faster in practice due to pruning and greedy behavior
-#     def findCheapestPrice(self, n: int, flights: List[List[int]], src: int, dst: int, K:int) -> int:
-#         graph = collections.defaultdict(list)
-#         for start, end, weight in flights:
-#             graph[start].append((end, weight))
+class Solution:
+    def findCheapestPrice(self, n: int, flights: List[List[int]], src: int, dst: int, k: int) -> int:
+        graph = defaultdict(list)
+        for start, target, cost in flights:
+            graph[start].append((target, cost))
         
-#         dist = [(float('inf'), float('inf'))] * n
-#         dist[src] = (0, 0)
-
-#         heap = [(0, 0, src)]
-#         while heap:
-#             cost, hops, node = heapq.heappop(heap)
-#             if node == dst and hops <= K + 1:
-#                 return cost
-#             if hops == K + 1:
-#                 continue
-#             for nei, c in graph[node]:
-#                 if cost + c >= dist[nei][0] and hops + 1 >= dist[nei][1]:
-#                     continue
-#                 dist[nei] = ((cost + c, hops + 1))
-#                 heapq.heappush(heap, (cost + c, hops + 1, nei))
-#         return -1
+        dist = [(float('inf'), float('inf')) for _ in range(n)]
+        dist[src] = (0, 0)
+        heap = [(0, 0, src)]
+        parent = dict()
+        final_cost = -1
+        while heap:
+            cost, hops, node = heapq.heappop(heap)
+            if node == dst and hops <= k + 1:
+                final_cost = cost
+                break
+            if hops == k + 1:
+                continue
+            for nei, nei_cost in graph[node]:
+                if cost + nei_cost >= dist[nei][0] and hops + 1 >= dist[nei][1]:
+                    continue
+                dist[nei] = ((cost + nei_cost, hops + 1))
+                heapq.heappush(heap, (cost + nei_cost, hops + 1, nei))
+                parent[nei] = node
+        '''
+        ans = []
+        node = dst
+        if dist[dst][0] < float('inf'):
+            ans.append(node)
+            while node in parent:
+                ans.append(parent[node])
+                node = parent[node]
+        ans.reverse()
+        # print(ans)
+        '''
+        return final_cost
 class Solution:
     # O(n) --> all nodes
     def findCheapestPrice(self, n: int, flights: List[List[int]], src: int, dst: int, K:int) -> int:
