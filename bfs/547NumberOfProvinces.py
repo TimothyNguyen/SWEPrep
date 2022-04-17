@@ -40,3 +40,4 @@ class Solution(object):
                 visited.add(city)
                 dfs(visited, isConnected, city)
         return ans
+# O(n^2) time, O(n) space
