@@ -18,19 +18,19 @@ class Solution(object):
         """
         
         ans = []
-        def has_cycle_helper(vertex, graph, vertex_states):
-            if vertex in vertex_states and vertex_states[vertex] == DONE_VISITING: 
+        def has_cycle_helper(vertex, graph, visited):
+            if vertex in visited and visited[vertex] == DONE_VISITING: 
                 return False
-            vertex_states[vertex] = VISITING
+            visited[vertex] = VISITING
             for neighbor in graph.edges[vertex]:
-                if neighbor in vertex_states:
-                    if vertex_states[neighbor] == VISITING:
+                if neighbor in visited:
+                    if visited[neighbor] == VISITING:
                         return True
                     continue
                 else:
-                    if has_cycle_helper(neighbor, graph, vertex_states): 
+                    if has_cycle_helper(neighbor, graph, visited): 
                         return True
-            vertex_states[vertex] = DONE_VISITING
+            visited[vertex] = DONE_VISITING
             ans.append(vertex)
             return False
     
@@ -43,9 +43,9 @@ class Solution(object):
             nextCourse, prevCourse = relation[0], relation[1]
             graph.add_edge(prevCourse, nextCourse)
 
-        vertex_states = dict()
+        visited = dict()
         for vertex in graph.edges:
-            if has_cycle_helper(vertex, graph, vertex_states): 
+            if has_cycle_helper(vertex, graph, visited): 
                 return []
             
         return ans[::-1]
