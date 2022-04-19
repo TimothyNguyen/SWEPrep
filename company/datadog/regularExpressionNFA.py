@@ -39,12 +39,8 @@ class NFA:
                 lp = self._ops.pop()
                 for idx_inside_brackets in range(lp + 1, i):
                     self._graph[lp].append(idx_inside_brackets)
-                    # If a match occurs while checking the characters 
-                    # in this set, the DFA will go to the right 
-                    # square bracket state.
-                    self.sets_match[idx_inside_brackets] = i
-                    # if it's a range there's no need to process the next two chars
-                    if self._regexp[idx_inside_brackets + 1] == '-':
+                    self.sets_match[idx_inside_brackets] = i  # If a match occurs while checking the character in this set, the DFA will go to the right square bracket state.
+                    if self._regexp[idx_inside_brackets + 1] == '-': # if it's a range there's no need to process the next two chars
                         idx_inside_brackets += 2
             if i < self._reg_len - 1:
                 if self._regexp[i + 1] == '*':
@@ -54,7 +50,6 @@ class NFA:
                    self._graph[i+1].append(lp)
             if self._regexp[i] in ('(', '*', ')', '+', '[', ']'):
                 self._graph[i].append(i + 1)
-
     def recognizes(self, text):
         visited = set()
         dfs = DirectedDFS(self._graph, (0, ))
@@ -79,7 +74,6 @@ class NFA:
                     elif self._regexp[node] == text[i] or self._regexp[node] == '.':
                         match.add(node + 1)
             visited = set()
-            # print(match)
             dfs = DirectedDFS(self._graph, match)
             for node in self._graph:
                 if dfs.marked[node]:
@@ -139,7 +133,7 @@ nfa = NFA(".*[ABC]Z")
 print(nfa.recognizes("This is a text AZ"))
 print(nfa.recognizes("This is a text BZ"))
 print(nfa.recognizes("This is a text CZ"))
-print(nfa.recognizes("D"))
+print(nfa.recognizes("D")) # False
 
 '''
 NFA(nondeterministic finite state automaton) algorithm for regular expression.

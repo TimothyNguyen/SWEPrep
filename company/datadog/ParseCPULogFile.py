@@ -73,39 +73,10 @@ it RETURNS. Meaning the previous function in the stack
 
 Here are my codes:
 '''
-'''
-import collections
-def mergeIntervals(entryList):
-    # Entry(String jobName, boolean start, int timeStamp)
-	# return intervals of each job that it is using the CPU
-    dict_map = collections.defaultdict(list)
-    job_stack = []
-    def add_interval(jobName, start, end):
-        interval = dict_map[jobName]
-        if len(interval) == 0:
-            interval.append((start, end))
-        else:
-            last_interval = interval[-1]
-            if last_interval[1] >= start:
-                last_interval[1] = end
-            else:
-                interval.append((start, end))
-
-    for i in range(len(entryList)):
-        entry = entryList[i]
-        # Add interval
-        if job_stack:
-            add_interval(job_stack[-1][0],  entryList[i-1][2], entry[i][2])
-        # update job stack
-        if entry[1]:
-            job_stack.append(entry)
-        else:
-            job_stack.pop()
-    return dict_map
-'''
 
 class Solution:
     def SNAP_JobScheduling(self, fileName):
+        '''
         jobMap = {}
         contextStack = []
         curJob = None
@@ -137,9 +108,49 @@ class Solution:
                 curJob = jobName
                 startTime = time
         return jobMap
+        '''
+        jobMap = dict()
+        context_stack = []
+        curJob = None
+        startTime = -1
+        f = open(fileName, 'r')
+        for line in f:
+            jobName, startBool, timeStr = line.split(' ')
+            time = int(timeStr)
+            if jobName not in jobMap:
+                jobMap[jobName] = []
+            if curJob == jobName:
+                if startBool == 'true':
+                    context_stack.append(jobName)
+                else:
+                    if context_stack:
+                        nextJob = context_stack.pop()
+                        if nextJob != curJob:
+                            jobName[curJob].append([startTime, time])
+                            curJob = nextJob
+                            startTime = time
+                        else:
+                            jobName[curJob].append([startTime, time])
+                            curJob = None
+                            startTime = -1
+            else:
+                if curJob:
+                    jobMap[curJob].append([startTime, time])
+                    context_stack.append(curJob)
+                curJob = jobName
+                startTime = time     
 '''
+f1 true 1
+f1 true 2
+f2 true 4
+f2 false 8
+f1 false 16
+f1 false 32
+f3 true 64
+f3 false 128
+
 f1: [1, 4], [8, 32]
 f2: [4, 8], 
 f3: [64, 128]
-
 '''
+
