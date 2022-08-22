@@ -1,14 +1,21 @@
 class Solution:
     def generateParenthesis(self, n: int) -> List[str]:
-        ans: List[str] = []
-        self.backtrack("", ans, 0, 0, n)
+        
+        ans = []
+        def backtracking(open_b, close_b, i, n, path):
+            if i == n * 2:
+                ans.append("".join(path))
+                return
+            
+            if open_b > 0:
+                path.append('(')
+                backtracking(open_b - 1, close_b, i + 1, n, path)
+                path.pop()
+            if open_b < close_b:
+                path.append(')')
+                backtracking(open_b, close_b - 1, i + 1, n, path)
+                path.pop()
+            
+            
+        backtracking(n, n, 0, n, [])
         return ans
-
-    def backtrack(self, s: str, l: List[str], open: int, close: int, max: int):
-        if len(s) == max * 2:
-            l.append(s)
-            return
-        if open < max: 
-            self.backtrack(s + "(", l, open + 1, close, max)
-        if close < open:
-            self.backtrack(s + ")", l, open, close + 1, max)

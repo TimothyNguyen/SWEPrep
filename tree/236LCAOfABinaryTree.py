@@ -1,25 +1,25 @@
-# Given te lca
-import collections
-ans = None
-def lca(root: BinaryTreeNode, node0: BinaryTreeNode, node1: BinaryTreeNode):
-    
-    Status = collections.namedtuple('Status', ('num_target_nodes', 'ancestor'))
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
 
-    def lca_helper(current_node):
-        if not root: return False # return Status(num_target_nodes=0 , ancestor=None)
-
-        left = lca_helper(current_node.left)
-        right = lca_helper(current_node.right)
-
-        mid = current_node == node0 or current_node == node1
-
-        # if any two of the three flags become true
-        if mid + left + right >= 2:
-            ans = current_node
+class Solution:
+    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
         
-        return mid or left or right
-    lca_helper(root)
-    return ans
+        ans = None
+        def lca_helper(curr):
+            nonlocal ans
+            if not curr:
+                return False
+            
+            left = lca_helper(curr.left)
+            right = lca_helper(curr.right)
+            mid = curr == p or curr == q
+            if mid + left + right >= 2:
+                ans = curr
+            return mid or left or right
         
-
-
+        lca_helper(root)
+        return ans

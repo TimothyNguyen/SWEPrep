@@ -13,8 +13,7 @@ def rightSideView(root):
 def leftSideView(root):
 
     def dfs(root, res, level):
-        if not root: 
-            return
+        if not root: return
         if level > len(res):
             res.append(root.val)
         dfs(root.left, res, level + 1)

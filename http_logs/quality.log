@@ -1,0 +1,12 @@
+2020-06-30 12:44:06,608 DEBUG [main] [apitests.ApiTest] Reading of Excel File Started
+2020-06-30 12:44:11,853 DEBUG [main] [apitests.ApiTest] The Keyword's Entered : Asus Laptop
+2020-06-30 12:44:11,853 DEBUG [main] [apitests.ApiTest] No of Keywords Entered = 1
+2020-06-30 12:44:11,853 DEBUG [main] [apitests.ApiTest] Response Code from API : 200
+2020-06-30 12:44:11,853 DEBUG [main] [apitests.ApiTest] Time Taken : 1959 milliseconds
+2020-06-30 12:44:11,853 DEBUG [main] [apitests.ApiTest] The Result Obtained from API is : {"keywords": {"Asus Laptop": ["Premium grade"]}}
+2020-06-30 12:44:11,853 DEBUG [main] [apitests.ApiTest] --------------------------------------------------------------------------------------
+2020-06-30 12:44:12,136 DEBUG [main] [apitests.ApiTest] The Keyword's Entered : Intext Hardrive
+2020-06-30 12:44:12,136 DEBUG [main] [apitests.ApiTest] No of Keywords Entered = 1
+2020-06-30 12:44:12,136 DEBUG [main] [apitests.ApiTest] Response Code from API : 200
+2020-06-30 12:44:12,136 DEBUG [main] [apitests.ApiTest] Time Taken : 243 milliseconds
+2020-06-30 12:44:12,136 DEBUG [main] [apitests.ApiTest] The Result Obtained from API is : {"keywords": {"Intext Hardrive": ["Medium grade"]}}

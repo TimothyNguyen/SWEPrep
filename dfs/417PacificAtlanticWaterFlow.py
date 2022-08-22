@@ -22,6 +22,15 @@ Input: heights = [[1,2,2,3,5],
                   [6,7,1,4,5],
                   [5,1,1,2,4]]
 Output: [[0,4],[1,3],[1,4],[2,2],[3,0],[3,1],[4,0]]
+
+Time complexity: O(M⋅N), where M is the number of rows and N 
+is the number of columns.
+
+Similar to approach 1. The dfs function runs exactly 
+once for each cell accessible from an ocean.
+
+Space complexity: O(M⋅N), where M is the number of rows and N 
+is the number of columns.
 '''
 
 class Solution:
