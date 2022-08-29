@@ -29,20 +29,3 @@ class Solution:
         res = set()
         dfs(0, [])
         return list(res)
-# Time complexity: O(n⋅2^n*(nlog(word))), Sppace: O(n)
-# class Solution:
-#     def subsetsWithDup(self, nums: List[int]) -> List[List[int]]:
-#         def backtrack(idx, curr):
-#             if k == len(curr) and ''.join(str(sorted(curr))) not in subsets:
-#                 output.append(list(curr))
-#                 subsets.add(''.join(str(sorted(curr))))
-#                 return
-#             for i in range(idx, len(nums)):
-#                 curr.append(nums[i])
-#                 backtrack(i + 1, curr)
-#                 curr.pop()
-#         subsets = set()
-#         output = []
-#         for k in range(len(nums) + 1):
-#             backtrack(0, [])   
-#         return output
