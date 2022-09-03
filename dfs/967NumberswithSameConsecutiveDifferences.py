@@ -12,6 +12,8 @@ Example 1:
 Input: n = 3, k = 7
 Output: [181,292,707,818,929]
 Explanation: Note that 070 is not a valid number, because it has leading zeroes.
+
+# TIme: O(2^N)
 '''
 class Solution:
     def numsSameConsecDiff(self, n: int, k: int) -> List[int]:
