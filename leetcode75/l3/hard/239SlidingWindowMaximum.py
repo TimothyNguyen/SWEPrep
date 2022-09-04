@@ -16,6 +16,8 @@ Window position                Max
  1  3  -1 [-3  5  3] 6  7       5
  1  3  -1  -3 [5  3  6] 7       6
  1  3  -1  -3  5 [3  6  7]      7
+
+ Time/Space: O(N)
 '''
 class Solution:
     def maxSlidingWindow(self, nums: 'List[int]', k: 'int') -> 'List[int]':
