@@ -35,6 +35,7 @@ Time: O(L * M * log(M)) for get
 Space: O(M * L) for set
        O(N) for get
 '''
+'''
 class TimeMap:
 
     def __init__(self):
@@ -59,8 +60,7 @@ class TimeMap:
         
         # Return value stored at previous position of current iterator
         return self.time_map[key].peekitem(it - 1)[1]
-        
-'''
+'''       
 class TimeMap:
     def __init__(self):
         self.key_time_map = {}
@@ -94,8 +94,6 @@ class TimeMap:
 
         # If iterator points to first element it means, no time <= timestamp exists.
         return "" if right == 0 else self.key_time_map[key][right - 1][1]
-'''
-
 # Your TimeMap object will be instantiated and called as such:
 # obj = TimeMap()
 # obj.set(key,value,timestamp)
