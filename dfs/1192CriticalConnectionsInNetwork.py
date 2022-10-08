@@ -19,6 +19,17 @@ Example 2:
 
 Input: n = 2, connections = [[0,1]]
 Output: [[0,1]]
+
+https://leetcode.com/problems/critical-connections-in-a-network/solution/
+
+Time Complexity: O(V + E)O(V+E) where V represents the number of vertices and E 
+represents the number of edges in the graph. We process each node exactly once thanks
+to the rank dictionary also acting as a "visited" safeguard at the top of the dfs function. 
+Since the problem statement mentions that the graph is connected, that means E >= V
+ and hence, the overall time complexity would be dominated by the number of edges i.e. O(E).
+
+Space Complexity: O(E)O(E). The overall space complexity is a sum of the space occupied 
+by the connDict dictionary, rank dictionary, and graph data structure. E + V + (V + E)E+V+(V+E) = O(E)O(E).
 '''
 class Solution:
     
