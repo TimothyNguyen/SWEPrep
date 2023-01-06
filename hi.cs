@@ -1,0 +1,1 @@
+public IActionResult Post(string index, List<Product> products)
