@@ -28,38 +28,45 @@ Explanation: The order is invalid, so return "".
 '''
 class Solution:
     def alienOrder(self, words: List[str]) -> str:
-        # create the adjacency list
-        graph = { c:set() for w in words for c in w }
 
-        # Get each pair
-        for i in range(len(words), -1):
-            w1, w2 = words[i], words[i + 1]
+        if len(words) == 0:
+            return ""
+
+        graph = dict()
+        for word in words:
+            for c in word:
+                if c not in graph:
+                    graph[c] = []
+        
+        # Step 1: Find all edges and put them in reverse_adj_list.
+        for i in range(len(words) - 1):
+            w1, w2 = words[i], words[i+1]
             min_len = min(len(w1), len(w2))
-
-            # Not a valid ordering
             if len(w1) > len(w2) and w1[:min_len] == w2[:min_len]:
                 return ""
-            for j in range(min_len):
+            j = 0
+            while j < min_len:
                 if w1[j] != w2[j]:
-                    # Add to our adjacency list
-                    graph[w1[j]].add(w2[j])
+                    graph[w1[j]].append(w2[j])
                     break
-        
-        visited = dict() # false=visited, True = visited & current path
-        res = []
+                j += 1
+
+        visited_letters = dict()
+        ans = []
+        print(graph)
 
         def dfs(c):
-            if c in visited:
-                return visited[c]
-            visited[c] = True
+            if c in visited_letters:
+                return visited_letters[c]
+            visited_letters[c] = True
             for nei in graph[c]:
                 if dfs(nei):
                     return True
-            visited[c] = False
-            res.append(c)
+            visited_letters[c] = False
+            ans.append(c)
+            return False
 
-        for c in graph:
-            if dfs(c):
-                return  ""
-        return "".joined(reversed(res))
-
+        for ch in graph:
+            if dfs(ch):
+                return ""
+        return "".join(reversed(ans))
