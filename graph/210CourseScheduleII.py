@@ -47,4 +47,37 @@ class Solution:
         # If possible, return ordering else []
         return order if possible else []
 
+'''
+class Solution:
+    def findOrder(self, numCourses: int, prerequisites: List[List[int]]) -> List[int]:
+        graph = collections.defaultdict(list)
+        for c2, c1 in prerequisites:
+            graph[c1].append(c2)
+
+        visited = [False] * numCourses
+        finished = set()
+        ans = []
+
+        def dfs(courseNum):
+            if visited[courseNum]:
+                return visited[courseNum]
+            visited[courseNum] = True
+            for next_course in graph[courseNum]:
+                if next_course not in finished:
+                    if visited[next_course] == False:
+                        if dfs(next_course):
+                            return True
+                    else:
+                        return True
+            finished.add(courseNum)
+            ans.append(courseNum)
+            return False
+
+        for courseNum in range(numCourses):
+            if visited[courseNum] == False and courseNum not in finished:
+                if dfs(courseNum):
+                    return []
+        return ans[::-1]
+'''
+
         
