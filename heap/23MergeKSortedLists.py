@@ -23,3 +23,4 @@ class Solution:
                 tail.next = temp
             tail = temp
         return head
+
