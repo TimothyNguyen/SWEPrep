@@ -62,3 +62,45 @@ class Solution:
         
         # Find all cells that can reach both oceans, and convert to list
         return list(pacific_reachable.intersection(atlantic_reachable))
+
+class Solution2:
+    def pacificAtlantic(self, heights: List[List[int]]) -> List[List[int]]:
+
+        pacific_reachable = set()
+        atlantic_reachable = set()
+
+        def dfs(r, c, reachable):
+            if (r, c) in reachable or r < 0 or c < 0 or r > len(heights) - 1 or \
+                c > len(heights[0]) - 1:
+                return
+            reachable.add((r, c))
+            temp_val = heights[r][c]
+            heights[r][c] = 10**5 + 1
+            if r == 0 or temp_val <= heights[r-1][c]:
+                dfs(r-1, c, reachable)
+            if c == 0 or temp_val <= heights[r][c-1]:
+                dfs(r, c-1, reachable)
+            if r == len(heights) - 1 or temp_val <= heights[r+1][c]:
+                dfs(r+1, c, reachable)
+            if c == len(heights[0]) - 1 or temp_val <= heights[r][c+1]:
+                dfs(r, c+1, reachable)
+            heights[r][c] = temp_val
+
+        for r in range(len(heights)):
+            dfs(r, 0, pacific_reachable)
+            dfs(r, len(heights[0])-1, atlantic_reachable)
+        for c in range(len(heights[0])):
+            dfs(0, c, pacific_reachable)
+            dfs(len(heights) - 1, c, atlantic_reachable)
+        
+        print(atlantic_reachable)
+        print(pacific_reachable)
+
+        res = []
+        for r in range(len(heights)):
+            for c in range(len(heights[0])):
+                if (r,c) in pacific_reachable and (r,c) in atlantic_reachable:
+                    res.append([r,c])
+        return res
+        
+        # return list(pacific_reachable.intersection(atlantic_reachable))
