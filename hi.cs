@@ -280,3 +280,292 @@ public class BirthdayMiddleware
         await _next(context);
     }
 }
+
+protected virtual void Dispose(bool disposing)
+{
+    if (_disposed)
+    {
+        return;
+    }
+
+    if (disposing)
+    {
+        // TODO: dispose managed state (managed objects).
+    }
+
+    // TODO: free unmanaged resources (unmanaged objects) and override a finalizer below.
+    // TODO: set large fields to null.
+
+    _disposed = true;
+}
+
+using System;
+
+public sealed class Foo : IDisposable
+{
+    private readonly IDisposable _bar;
+
+    public Foo()
+    {
+        _bar = new Bar();
+    }
+
+    public void Dispose() => _bar.Dispose();
+}
+
+using Microsoft.Win32.SafeHandles;
+using System;
+using System.Runtime.InteropServices;
+
+class BaseClassWithSafeHandle : IDisposable
+{
+    // To detect redundant calls
+    private bool _disposedValue;
+
+    // Instantiate a SafeHandle instance.
+    private SafeHandle _safeHandle = new SafeFileHandle(IntPtr.Zero, true);
+
+    // Public implementation of Dispose pattern callable by consumers.
+    public void Dispose() => Dispose(true);
+
+    // Protected implementation of Dispose pattern.
+    protected virtual void Dispose(bool disposing)
+    {
+        if (!_disposedValue)
+        {
+            if (disposing)
+            {
+                _safeHandle.Dispose();
+            }
+
+            _disposedValue = true;
+        }
+    }
+}
+
+using System;
+
+class BaseClassWithFinalizer : IDisposable
+{
+    // To detect redundant calls
+    private bool _disposedValue;
+
+    ~BaseClassWithFinalizer() => Dispose(false);
+
+    // Public implementation of Dispose pattern callable by consumers.
+    public void Dispose()
+    {
+        Dispose(true);
+        GC.SuppressFinalize(this);
+    }
+
+    // Protected implementation of Dispose pattern.
+    protected virtual void Dispose(bool disposing)
+    {
+        if (!_disposedValue)
+        {
+            if (disposing)
+            {
+                // TODO: dispose managed state (managed objects)
+            }
+
+            // TODO: free unmanaged resources (unmanaged objects) and override finalizer
+            // TODO: set large fields to null
+            _disposedValue = true;
+        }
+    }
+}
+
+
+using Microsoft.Win32.SafeHandles;
+using System;
+using System.Runtime.InteropServices;
+
+class DerivedClassWithSafeHandle : BaseClassWithSafeHandle
+{
+    // To detect redundant calls
+    private bool _disposedValue;
+
+    // Instantiate a SafeHandle instance.
+    private SafeHandle _safeHandle = new SafeFileHandle(IntPtr.Zero, true);
+
+    // Protected implementation of Dispose pattern.
+    protected override void Dispose(bool disposing)
+    {
+        if (!_disposedValue)
+        {
+            if (disposing)
+            {
+                _safeHandle.Dispose();
+            }
+
+            _disposedValue = true;
+        }
+
+        // Call base class implementation.
+        base.Dispose(disposing);
+    }
+}
+
+using Microsoft.Win32.SafeHandles;
+using System;
+using System.Runtime.InteropServices;
+
+class DerivedClassWithSafeHandle : BaseClassWithSafeHandle
+{
+    // To detect redundant calls
+    private bool _disposedValue;
+
+    // Instantiate a SafeHandle instance.
+    private SafeHandle _safeHandle = new SafeFileHandle(IntPtr.Zero, true);
+
+    // Protected implementation of Dispose pattern.
+    protected override void Dispose(bool disposing)
+    {
+        if (!_disposedValue)
+        {
+            if (disposing)
+            {
+                _safeHandle.Dispose();
+            }
+
+            _disposedValue = true;
+        }
+
+        // Call base class implementation.
+        base.Dispose(disposing);
+    }
+}
+
+class DerivedClassWithFinalizer : BaseClassWithFinalizer
+{
+    // To detect redundant calls
+    private bool _disposedValue;
+
+    ~DerivedClassWithFinalizer() => this.Dispose(false);
+
+    // Protected implementation of Dispose pattern.
+    protected override void Dispose(bool disposing)
+    {
+        if (!_disposedValue)
+        {
+            if (disposing)
+            {
+                // TODO: dispose managed state (managed objects).
+            }
+
+            // TODO: free unmanaged resources (unmanaged objects) and override a finalizer below.
+            // TODO: set large fields to null.
+            _disposedValue = true;
+        }
+
+        // Call the base class implementation.
+        base.Dispose(disposing);
+    }
+}
+
+using System.IO;
+
+class UsingStatement
+{
+    static void Main()
+    {
+        var buffer = new char[50];
+        using (StreamReader streamReader = new("file1.txt"))
+        {
+            int charsRead = 0;
+            while (streamReader.Peek() != -1)
+            {
+                charsRead = streamReader.Read(buffer, 0, buffer.Length);
+                //
+                // Process characters read.
+                //
+            }
+        }
+    }
+}
+
+namespace DynamicLanguageRuntime
+{
+    public class Course
+    {
+        public string Title { get; set; }
+    }
+}
+
+using System;
+
+namespace DynamicLanguageRuntime
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // We declare the variable using the dynamic keyword
+            dynamic course = new Course() { Title = ".NET Fundamentals" };
+            
+            // Program compiles and runs because there is no compile-time checking
+            // for dynamic objects
+            Console.WriteLine("Program started running...");
+
+            // However, because there is no Duration property, 
+            // the program fails during runtime
+            Console.WriteLine(course.Duration);
+        }
+    }
+}
+
+
+using System;
+
+namespace DynamicLanguageRuntime
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // We assign an int value in the beginning
+            dynamic someVariable = 24;
+
+            Console.WriteLine($"Type of someVariable: {someVariable.GetType()}, value: {someVariable}.");
+
+            // Can assign string
+            someVariable = "Now, it's a string";
+
+            Console.WriteLine($"Type of someVariable: {someVariable.GetType()}, value: {someVariable}.");
+
+        }
+    }
+
+}
+
+namespace DynamicLanguageRuntime
+{
+    public class Course
+    {
+        public string Title { get; set; }
+
+        public int DurationInWeeks { get; set; }
+
+        // The method has dynamic return type
+        public dynamic GetCourseDuration(string format)
+        {
+            // Depending on the value of format,
+            // the return type will either be int or string
+            if (format == "string")
+            {
+                return $"{DurationInWeeks} weeks";
+            }
+            
+            else if (format == "int")
+            {
+                return DurationInWeeks;
+            }
+
+            else
+            {
+                return "Invalid format provided.";
+            }
+        }
+    }
+}
