@@ -43,3 +43,4 @@ arr = [ 10, 4, 5, 8, 6, 11, 26 ]
 n = len(arr)
 k = 3
 print(kthSmallest(arr, 0, n - 1, k))
+
