@@ -16,3 +16,27 @@ def binary_iterative_search(arr, key):
         elif arr[m] < key: l = m + 1
         else: return m
     return None
+
+def bisect_left(self, nums, target):
+    l, r = 0, len(nums)
+    # Returns the leftmost insertion point
+    l, r = 0, len(nums)
+    while l < r:
+        m = l + (r - l) // 2
+        if nums[m] < target:
+            l = m + 1
+        else:
+            r = m
+    return l
+
+def bisect_right(self, nums, target):
+    l, r = 0, len(nums)
+    # Returns the rightmost insertion point
+    l, r = 0, len(nums)
+    while l < r:
+        m = l + (r - l) // 2
+        if nums[m] <= target:
+            l = m + 1
+        else:
+            r = m
+    return l
