@@ -20,7 +20,7 @@ class Solution(object):
         return output
     
     def inorderIterativeTraversal(self, root):
-        """
+        """res 
         :type root: TreeNode
         :rtype: List[int]
         """

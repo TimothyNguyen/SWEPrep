@@ -22,7 +22,7 @@ class Graph:
 
         def dfs(v, parent):
             visited[v] = True
-
+ 
             for i in range(self.v):
                 if not visited[i]:
                     if dfs(i, v):

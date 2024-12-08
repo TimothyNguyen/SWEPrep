@@ -1,0 +1,20 @@
+nonlocal - indicate a variable within a nested function refers to a variable in the enclosing scope
+
+bisect left: Finds the insertion point for an element to maintain a sorted order, preferring 
+the leftmost position if the element already exists
+    - Use Case: When you need to insert an element before existing eleemnts of the same value
+    - Behavior: Returns the first index where the element is not less than the given value
+
+Ex: 
+arr = [1, 2, 2, 3, 4]
+x = 2
+index = bisect.bisect_left(arr, x) -> 1
+
+bisect right: Find the insertion point for an element to maintain a sorted order preferring
+the rightmost position if the element already exists.
+    - Use case: When you need to insert an element after existing elements of the same value
+    - Behavior: Returns the first index where the element is greater than the given value
+Ex: 
+arr = [1, 2, 2, 3, 4]
+x = 2
+index = bisect.bisect_left(arr, x) -> 3
